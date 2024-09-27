@@ -137,6 +137,31 @@ li:hover {
 	width: 100%;
 
 }
+/* Category Menu */
+.category-menu {
+	display: flex;
+	justify-content: center;
+	margin: 2em 0;
+	gap: 10px;
+	
+}
+
+.category-menu button {
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	background-color: white;
+	color: #1D6154;
+	cursor: pointer;
+	padding: 10px 20px;
+	stroke: #1D6154;
+
+}
+
+.category-menu button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
@@ -185,4 +210,5 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
 
