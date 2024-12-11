@@ -133,7 +133,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/* Header Modal Styles */
+.edit-header {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
 
+}
+.edit-header img {
+  fill: white;
+}
 /** end reset css**/
 body {
   max-width: 1140px;
@@ -161,7 +171,7 @@ h1 {
   color: #b1663c;
 }
 
-h1>span {
+h1 > span {
   font-family: "Work Sans";
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -180,9 +190,16 @@ nav ul {
   list-style-type: none;
 }
 
+nav ul a {
+  text-decoration: none;
+  color: black;
+}
+
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
+  list-style-type: none;
+  color: black;
 }
 
 li:hover {
@@ -197,9 +214,9 @@ li a:hover {
   color: #b1663c;
 }
 
-.instagram {
-  width: 22px;
-  height: 22px;
+nav ul img {
+  width: 20px;
+  height: 20px;
 }
 
 #introduction {
@@ -234,6 +251,15 @@ li a:hover {
   margin-bottom: 1em;
 }
 
+#edit-btn {
+  background-color: #fffef8;
+  border: #fffef8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 .gallery {
   width: 100%;
   display: grid;
@@ -266,7 +292,6 @@ li a:hover {
   display: none;
 }
 
-
 /* Category Menu */
 .category-menu {
   display: flex;
@@ -298,7 +323,7 @@ li a:hover {
   margin: auto;
 }
 
-#contact>* {
+#contact > * {
   text-align: center;
 }
 

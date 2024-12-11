@@ -1,53 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>Sophie Bluel <span>Interior Designer</span></h1>
-    <nav>
-      <ul>
-        <li><a href="#portfolio">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="./login.html">Login</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-      <h2>My Projects</h2>
-      <div class="category-menu"></div>
-      <div class="gallery"></div>
-      <button id="edit-btn">Edit</button>
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Interior Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <!-- Header Modal -->
+    <div id="edit-header" class="edit-header">
+      <img src="../assets/images/edit-icon.svg" alt="edit icon" />
+      <p class="edit-content">Editing Mode</p>
+    </div>
 
-    <!-- Modal -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="photo-gallery" class="modal-view">
-          <h2>Photo Gallery</h2>
-          <button id="to-add-photo">Add a photo</button>
-        </div>
-        <div id="add-photo" class="modal-view hidden">
-          <h2>Add Photo</h2>
-          <form id="add-photo-form">
-            <input type="file" id="file-upload" accept="image/*" required />
-            <input type="text" id="title" placeholder="Title" required />
-            <button type="submit">Upload</button>
-          </form>
+    <header>
+      <h1>Sophie Bluel <span>Interior Designer</span></h1>
+      <nav>
+        <ul>
+          <li><a href="#portfolio">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="./login.html">Logout</a></li>
+          <li><img src="../assets/icons/instagram.png" alt="instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="../assets/images/sophie-bluel.png" alt="" />
+        </figure>
+        <article>
+          <h2>Space Designer</h2>
+          <p>
+            I tell your story and bring your ideas to life. I work with you
+            every step of the way—from the design stage until the very end of
+            the project.
+          </p>
+          <p>
+            Together, we’ll decide on the volumes, materials, and colors, while
+            maintaining the space’s character and selection of materials. Every
+            single aspect of the project will be thoroughly monitored, ensuring
+            it remains on schedule and on budget.
+          </p>
+          <p>
+            If necessary, a multidisciplinary team can be brought into your
+            project, including an accredited architect and a decorator.
+          </p>
+        </article>
+      </section>
+      <!-- Portfolio Section -->
+      <section id="portfolio">
+        <!-- TODO:SURROUND HEADING AND BUTTON WITH A FLEXBOX CONTAINER -->
+        <h2>My Projects</h2>
+
+        <button id="edit-btn" class="hidden">
+          <img
+            src="../assets/images/Vector.png"
+            alt="edit icon"
+            id="edit-icon"
+          />
+          Edit
+        </button>
+        <div class="category-menu"></div>
+        <div class="gallery"></div>
+      </section>
+
+      <!-- Modal -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div id="photo-gallery" class="modal-view">
+            <h2>Photo Gallery</h2>
+            <div class="modal-gallery"><!-- Jobs will be inserted here --></div>
+            <button id="to-add-photo">Add a photo</button>
+          </div>
+          <div id="add-photo" class="modal-view hidden">
+            <h2>Add Photo</h2>
+            <form id="add-photo-form">
+              <input type="file" id="file-upload" accept="image/*" required />
+              <input type="text" id="title" placeholder="Title" required />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-  <footer>
-    <p>Legal Notice</p>
-  </footer>
-  <script src="script.js"></script>
-</body>
+    </main>
+    <footer>
+      <p>Legal Notice</p>
+    </footer>
+    <script src="../js/script.js"></script>
+  </body>
 </html>

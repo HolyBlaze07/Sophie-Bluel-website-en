@@ -1,8 +1,28 @@
 let jobCache; // Cache for jobs
 const galleryDiv = document.querySelector(".gallery");
 const filterDiv = document.querySelector(".category-menu");
-
+// TODO: check if user is logged in, if logged in then show the edit bar by adding and removing the class using css 
 // Fetch and display jobs
+
+checkUserLoggedIn();
+//TODO:
+
+function checkUserLoggedIn() {
+  const userToken = localStorage.getItem("userToken");
+  const editBar = document.querySelector(".edit-header"); // Make sure you have this element in your HTML
+
+  if (userToken) {
+    // User is logged in, show the edit bar
+    //TODO: Add the class to show the edit button
+    //TODO: Show to logout navigation link
+    //TODO: hide the filter buttons
+    editBar.classList.remove("hidden");
+  } else {
+    // User not logged in, keep the edit bar hidden
+    editBar.classList.add("hidden");
+    //TODO: Hide the edit bar and edit button, hiding the logout  and hide the login but not at the same time. Show the filter buttons.
+  }
+}
 fetch("http://localhost:5678/api/works")
   .then((data) => data.json())
   .then((jobs) => {
@@ -79,6 +99,8 @@ const addPhoto = document.getElementById("add-photo");
 
 // Open modal
 document.getElementById("edit-btn").addEventListener("click", () => {
+  insertModalGallery(jobCache); // Insert jobs into modal gallery
+  
   modal.style.display = "block"; // Show modal
 });
 
@@ -97,3 +119,28 @@ toAddPhotoBtn.addEventListener("click", () => {
   photoGallery.classList.add("hidden");
   addPhoto.classList.remove("hidden");
 });
+
+function insertModalGallery(jobs) {
+  const modalGallery = document.querySelector(".modal-gallery");
+  modalGallery.innerHTML = ""; // Clear previous entries
+
+  jobs.forEach(job => {
+    const jobDiv = document.createElement("div");
+    jobDiv.className = "modal-job";
+    jobDiv.innerHTML = `
+      <img src="${job.imageUrl}" alt="${job.title}">
+      <p>${job.title}</p>
+      <button class="delete-btn" data-job-id="${job.id}">Delete</button>
+    `;
+    modalGallery.appendChild(jobDiv);
+  });
+
+  // Add event listeners to all delete buttons
+  modalGallery.querySelectorAll(".delete-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const jobId = button.getAttribute("data-job-id");
+      deleteJob(jobId);
+    });
+  });
+}
+

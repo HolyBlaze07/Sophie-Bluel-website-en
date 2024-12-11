@@ -1,5 +1,6 @@
+localStorage.clear();
 const loginForm = document.getElementById("loginForm");
-
+// TODO:Clear out local storage (google on how to clear local storage with javascript)
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault(); // Prevent the form from submitting the traditional way
 
