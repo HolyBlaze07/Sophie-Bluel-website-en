@@ -100,7 +100,7 @@ const addPhoto = document.getElementById("add-photo");
 // Open modal
 document.getElementById("edit-btn").addEventListener("click", () => {
   insertModalGallery(jobCache); // Insert jobs into modal gallery
-  
+
   modal.style.display = "block"; // Show modal
 });
 
@@ -129,9 +129,10 @@ function insertModalGallery(jobs) {
     jobDiv.className = "modal-job";
     jobDiv.innerHTML = `
       <img src="${job.imageUrl}" alt="${job.title}">
-      <p>${job.title}</p>
-      <button class="delete-btn" data-job-id="${job.id}">Delete</button>
-    `;
+    
+    <button class="delete-btn" data-job-id="${job.id}">
+          <img src="../assets/images/Group 10@2x.png" alt="Delete icon" />
+        </button>`;
     modalGallery.appendChild(jobDiv);
   });
 

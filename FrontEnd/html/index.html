@@ -15,6 +15,7 @@
   </head>
   <body>
     <!-- Header Modal -->
+
     <div id="edit-header" class="edit-header">
       <img src="../assets/images/edit-icon.svg" alt="edit icon" />
       <p class="edit-content">Editing Mode</p>
@@ -27,6 +28,7 @@
           <li><a href="#portfolio">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="./login.html">Logout</a></li>
+
           <li><img src="../assets/icons/instagram.png" alt="instagram" /></li>
         </ul>
       </nav>
@@ -59,7 +61,6 @@
       <section id="portfolio">
         <!-- TODO:SURROUND HEADING AND BUTTON WITH A FLEXBOX CONTAINER -->
         <h2>My Projects</h2>
-
         <button id="edit-btn" class="hidden">
           <img
             src="../assets/images/Vector.png"
@@ -71,6 +72,19 @@
         <div class="category-menu"></div>
         <div class="gallery"></div>
       </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Do you have a project in mind? Let’s talk about it!</p>
+        <form action="#" method="post">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Send" />
+        </form>
+      </section>
 
       <!-- Modal -->
       <div id="modal" class="modal">
@@ -79,6 +93,7 @@
           <div id="photo-gallery" class="modal-view">
             <h2>Photo Gallery</h2>
             <div class="modal-gallery"><!-- Jobs will be inserted here --></div>
+            <hr class="gallery-line" />
             <button id="to-add-photo">Add a photo</button>
           </div>
           <div id="add-photo" class="modal-view hidden">
@@ -91,6 +106,7 @@
           </div>
         </div>
       </div>
+      
     </main>
     <footer>
       <p>Legal Notice</p>

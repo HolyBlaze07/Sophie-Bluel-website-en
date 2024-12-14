@@ -139,7 +139,6 @@ table {
   color: white;
   display: flex;
   justify-content: center;
-
 }
 .edit-header img {
   fill: white;
@@ -246,13 +245,17 @@ nav ul img {
   margin-bottom: 0.5em;
 }
 
+.portfolio {
+  display: flex;
+}
+
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
 }
 
 #edit-btn {
-  background-color: #fffef8;
+  background-color: #ffffff;
   border: #fffef8;
   display: flex;
   align-items: center;
@@ -266,7 +269,7 @@ nav ul img {
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-}
+} */
 
 .gallery img {
   width: 100%;
@@ -281,15 +284,110 @@ nav ul img {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
+.modal-view h2 {
+  color: black;
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
 .modal-content {
-  background: #fff;
+  position: relative;
+  width: 630px;
+  height: 630px;
   margin: 10% auto;
   padding: 20px;
   border-radius: 8px;
-  width: 50%;
+  background: #fff;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  justify-content: center;
+}
+
+.gallery-line {
+  width: 420px;
+  height: 1px;
+  background: black;
+  border: none;
+  margin: 20px auto 0;
+  display: block;
+}
+
+.modal-job {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 76.61px;
+  height: auto;
+}
+
+.modal-job img {
+  width: 76.61px;
+  height: 102.57px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.modal-job p {
+  font-size: 14px;
+  text-align: center;
+}
+
+.delete-btn {
+  background: transparent;
+  position: absolute;
+  padding: 0;
+  right: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.delete-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.delete-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 .hidden {
   display: none;
+}
+#to-add-photo {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  translate: -50%;
+  width: 193px;
+  height: 35px;
+  border-radius: 60px;
+  padding: 9px 49px;
+  gap: 10px;
+  border: none;
+  background-color: #1d6154;
+  border-radius: 60px;
+  color: #ffffff;
+  width: 193px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
 }
 
 /* Category Menu */
