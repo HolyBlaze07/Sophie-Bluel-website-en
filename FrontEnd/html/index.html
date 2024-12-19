@@ -13,104 +13,112 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="../assets/style.css" />
   </head>
-  <body>
-    <!-- Header Modal -->
 
+  <body>
     <div id="edit-header" class="edit-header">
       <img src="../assets/images/edit-icon.svg" alt="edit icon" />
       <p class="edit-content">Editing Mode</p>
     </div>
+    <div class="page">
+      <header>
+        <h1>Sophie Bluel <span>Interior Designer</span></h1>
+        <nav>
+          <ul>
+            <li><a href="#portfolio">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li class="logout hidden"><a href="./" >Logout</a></li>
 
-    <header>
-      <h1>Sophie Bluel <span>Interior Designer</span></h1>
-      <nav>
-        <ul>
-          <li><a href="#portfolio">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="./login.html">Logout</a></li>
-
-          <li><img src="../assets/icons/instagram.png" alt="instagram" /></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section id="introduction">
-        <figure>
-          <img src="../assets/images/sophie-bluel.png" alt="" />
-        </figure>
-        <article>
-          <h2>Space Designer</h2>
-          <p>
-            I tell your story and bring your ideas to life. I work with you
-            every step of the way—from the design stage until the very end of
-            the project.
-          </p>
-          <p>
-            Together, we’ll decide on the volumes, materials, and colors, while
-            maintaining the space’s character and selection of materials. Every
-            single aspect of the project will be thoroughly monitored, ensuring
-            it remains on schedule and on budget.
-          </p>
-          <p>
-            If necessary, a multidisciplinary team can be brought into your
-            project, including an accredited architect and a decorator.
-          </p>
-        </article>
-      </section>
-      <!-- Portfolio Section -->
-      <section id="portfolio">
-        <!-- TODO:SURROUND HEADING AND BUTTON WITH A FLEXBOX CONTAINER -->
-        <h2>My Projects</h2>
-        <button id="edit-btn" class="hidden">
-          <img
-            src="../assets/images/Vector.png"
-            alt="edit icon"
-            id="edit-icon"
-          />
-          Edit
-        </button>
-        <div class="category-menu"></div>
-        <div class="gallery"></div>
-      </section>
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Do you have a project in mind? Let’s talk about it!</p>
-        <form action="#" method="post">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" />
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-          <label for="message">Message</label>
-          <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Send" />
-        </form>
-      </section>
-
-      <!-- Modal -->
-      <div id="modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <div id="photo-gallery" class="modal-view">
-            <h2>Photo Gallery</h2>
-            <div class="modal-gallery"><!-- Jobs will be inserted here --></div>
-            <hr class="gallery-line" />
-            <button id="to-add-photo">Add a photo</button>
+            <li><img src="../assets/icons/instagram.png" alt="instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="introduction">
+          <figure>
+            <img src="../assets/images/sophie-bluel.png" alt="" />
+          </figure>
+          <article>
+            <h2>Space Designer</h2>
+            <p>
+              I tell your story and bring your ideas to life. I work with you
+              every step of the way—from the design stage until the very end of
+              the project.
+            </p>
+            <p>
+              Together, we’ll decide on the volumes, materials, and colors,
+              while maintaining the space’s character and selection of
+              materials. Every single aspect of the project will be thoroughly
+              monitored, ensuring it remains on schedule and on budget.
+            </p>
+            <p>
+              If necessary, a multidisciplinary team can be brought into your
+              project, including an accredited architect and a decorator.
+            </p>
+          </article>
+        </section>
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+          <div class="project-header">
+            <h2>My Projects</h2>
+            <button id="edit-btn" class="hidden">
+              <img
+                src="../assets/images/Vector.png"
+                alt="edit icon"
+                id="edit-icon"
+              />
+              Edit
+            </button>
           </div>
-          <div id="add-photo" class="modal-view hidden">
-            <h2>Add Photo</h2>
-            <form id="add-photo-form">
-              <input type="file" id="file-upload" accept="image/*" required />
-              <input type="text" id="title" placeholder="Title" required />
-              <button type="submit">Upload</button>
-            </form>
+          <div class="category-menu"></div>
+          <div class="gallery" id="gallery"></div>
+        </section>
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>Do you have a project in mind? Let’s talk about it!</p>
+          <form action="#" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+            <label for="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <input type="submit" value="Send" />
+          </form>
+        </section>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="photo-gallery" class="modal-view">
+              <h2>Photo Gallery</h2>
+              <div class="modal-gallery">
+                <!-- Jobs will be inserted here -->
+              </div>
+              <hr class="gallery-line" />
+              <button id="to-add-photo">Add a photo</button>
+            </div>
+            <div id="add-photo" class="modal-view hidden">
+              <h2>Add Photo</h2>
+              <form id="add-photo-form">
+                <input type="file" id="file-upload" accept="image/*" required />
+                <input type="text" id="title" placeholder="Title" required />
+                <button type="submit">Upload</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      
-    </main>
-    <footer>
-      <p>Legal Notice</p>
-    </footer>
+      </main>
+      <footer>
+        <p>Legal Notice</p>
+      </footer>
+    </div>
     <script src="../js/script.js"></script>
   </body>
 </html>

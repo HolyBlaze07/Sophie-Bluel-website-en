@@ -139,16 +139,20 @@ table {
   color: white;
   display: flex;
   justify-content: center;
+  /* display:none */
 }
 .edit-header img {
   fill: white;
 }
 /** end reset css**/
 body {
-  max-width: 1140px;
-  margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  background: #fffef8;
+}
+.page {
+  max-width: 1140px;
+  margin: auto;
 }
 
 header {
@@ -251,16 +255,18 @@ nav ul img {
 
 #portfolio h2 {
   text-align: center;
+}
+.project-header {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1em;
+  gap: 15px;
 }
 
 #edit-btn {
   background-color: #ffffff;
   border: #fffef8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  
 }
 
 .gallery {
@@ -269,8 +275,7 @@ nav ul img {
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-} */
-
+}
 .gallery img {
   width: 100%;
 }
@@ -283,39 +288,54 @@ nav ul img {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000;
 }
 .modal-view h2 {
   color: black;
   font-family: "Work Sans";
   font-size: 26px;
   font-weight: 400;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  margin: 30px;
+  
+  text-align: center;
 }
 .modal-content {
   position: relative;
   width: 630px;
-  height: 630px;
+  height: 688px;
   margin: 10% auto;
   padding: 20px;
+
   border-radius: 8px;
   background: #fff;
+  max-width: 800px;
 }
 
 .modal-gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 
+  gap: 20px 0;
   justify-content: center;
+  margin: 30px 65px;
+  padding: 20px;
 }
 
 .gallery-line {
-  width: 420px;
-  height: 1px;
-  background: black;
-  border: none;
-  margin: 20px auto 0;
+  width: 520px;
+
+  margin-top: 100px;
+  border-top: 1px solid #000000;
   display: block;
 }
 
@@ -388,6 +408,7 @@ nav ul img {
   font-size: 14px;
   text-align: center;
   cursor: pointer;
+  margin: 20px;
 }
 
 /* Category Menu */
