@@ -139,10 +139,19 @@ table {
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 1440px;
+  height: 59px;
   /* display:none */
 }
 .edit-header img {
   fill: white;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 80%;
 }
 /** end reset css**/
 body {
@@ -266,7 +275,6 @@ nav ul img {
 #edit-btn {
   background-color: #ffffff;
   border: #fffef8;
-  
 }
 
 .gallery {
@@ -306,7 +314,7 @@ nav ul img {
   font-size: 26px;
   font-weight: 400;
   margin: 30px;
-  
+
   text-align: center;
 }
 .modal-content {

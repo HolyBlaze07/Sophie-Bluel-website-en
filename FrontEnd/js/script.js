@@ -8,22 +8,38 @@ function checkUserLoggedIn() {
   const userToken = localStorage.getItem("userToken");
   const editBar = document.querySelector(".edit-header");
   const editButton = document.getElementById("edit-btn");
-  const logoutLink = document.querySelector(".logout"); // Make sure you have this element in your HTML
-// TODO:Add event listener to the logout link to clear out local storage and redirect to login page
+  const logoutLink = document.querySelector(".logout");
+  const loginLink = document.querySelector(".login");
+  const filterButton = document.querySelector(".category-menu"); // Make sure you have this element in your HTML
+  // TODO:Add event listener to the logout link to clear out local storage and redirect to login page
   if (userToken) {
-  
     editButton.classList.remove("hidden");
     logoutLink.classList.remove("hidden");
     //TODO: hide the filter buttons. display none.
     editBar.classList.remove("hidden");
+    filterButton.classList.remove("hidden");
+    loginLink.classList.add("hidden");
+
   } else {
     editBar.classList.add("hidden");
     editButton.classList.add("hidden");
 
+    logoutLink.classList.add("hidden");
+    filterButton.classList.add("hidden");
+    loginLink.classList.remove("hidden");
+
     //TODO: hiding the logout  and show the login but not at the same time. Show the filter buttons.
   }
 }
- 
+// Add event listener for logout button
+const logoutButton = document.querySelector(".logout a");
+logoutButton.addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent the default link behavior
+  localStorage.removeItem("userToken"); // Clear the user session
+  checkUserLoggedIn(); // Recheck the user login status and update UI
+  window.location.href = "./"; // Redirect to the home page
+});
+
 fetch("http://localhost:5678/api/works")
   .then((data) => data.json())
   .then((jobs) => {
