@@ -140,7 +140,6 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1440px;
   height: 59px;
   /* display:none */
 }
@@ -302,8 +301,8 @@ nav ul img {
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 25px;
+  right: 25px;
   font-size: 30px;
   cursor: pointer;
   color: #000;
@@ -313,7 +312,7 @@ nav ul img {
   font-family: "Work Sans";
   font-size: 26px;
   font-weight: 400;
-  margin: 30px;
+  margin: 50px 30px 30px 30px;
 
   text-align: center;
 }
@@ -332,17 +331,17 @@ nav ul img {
 .modal-gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-
   gap: 20px 0;
   justify-content: center;
-  margin: 30px 65px;
+  /* margin: 30px 65px; */
   padding: 20px;
+  margin: 30px 65px 0 65px;
 }
 
 .gallery-line {
   width: 520px;
 
-  margin-top: 100px;
+  margin-top: 60px;
   border-top: 1px solid #000000;
   display: block;
 }
@@ -391,15 +390,12 @@ nav ul img {
 }
 .hidden {
   display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }
 #to-add-photo {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  translate: -50%;
-  width: 193px;
-  height: 35px;
-  border-radius: 60px;
+  margin: 30px auto;
   padding: 9px 49px;
   gap: 10px;
   border: none;
@@ -416,7 +412,6 @@ nav ul img {
   font-size: 14px;
   text-align: center;
   cursor: pointer;
-  margin: 20px;
 }
 
 /* Category Menu */
