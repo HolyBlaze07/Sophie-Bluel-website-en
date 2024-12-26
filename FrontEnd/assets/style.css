@@ -413,7 +413,28 @@ nav ul img {
   text-align: center;
   cursor: pointer;
 }
+/* File Uploading Styling */
+#file-upload {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  display: block;
+  font-size: 14px;
+}
 
+#title {
+  
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: none;
+
+  font-size: 14px;
+}
 /* Category Menu */
 .category-menu {
   display: flex;

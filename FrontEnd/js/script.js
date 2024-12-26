@@ -149,7 +149,7 @@ function insertModalGallery(jobs) {
     jobDiv.innerHTML = `
       <img src="${job.imageUrl}" alt="${job.title}">
     
-    <button class="delete-btn" data-job-id="${job.id}">
+    <button class="delete-btn" data-job="${job.id}">
           <img src="../assets/images/Group 10@2x.png" alt="Delete icon" />
         </button>`;
     modalGallery.appendChild(jobDiv);
@@ -157,9 +157,41 @@ function insertModalGallery(jobs) {
 
   // Add event listeners to all delete buttons
   modalGallery.querySelectorAll(".delete-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      const jobId = button.getAttribute("data-job-id");
-      deleteJob(jobId);
+    console.log(button);
+    button.addEventListener("click", async (event) => {
+      const deleteBtn = event.target;
+      const modalJob = deleteBtn.closest(`.modal-job`);
+
+      // const jobId = deleteBtn.dataset.job;
+      const jobId = 1;
+
+      modalJob.remove();
+      try {
+        const response = await fetch(
+          `http://localhost:5678/api/works/${jobId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+              "Content-Type": "application/json",
+            },
+            // TODO delete the job from the backend that has the id of jobId using fetch API
+            // TODO remove the job from the jobCache array
+          }
+        );
+        if (response.ok) {
+          jobCache = jobCache.filter((job) => job.id !== parseInt(jobId));
+
+          insertJobs(jobCache);
+          insertModalGallery(jobCache);
+        } else {
+          console.error("Failed to delete job");
+          alert("There was an error deleting the job");
+        }
+      } catch (error) {
+        console.error("Failed to delete job", error);
+        alert("There was an error deleting the job");
+      }
     });
   });
 }

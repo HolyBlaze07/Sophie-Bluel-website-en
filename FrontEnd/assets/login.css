@@ -40,11 +40,13 @@ h1 > span {
 .nav-bar {
   display: flex;
   align-items: center;
+  
 }
 
 nav ul {
   display: flex;
   align-items: center;
+  
   
 }
 
@@ -56,6 +58,7 @@ nav li {
 
 nav li a {
   text-decoration: none;
+  color: black;
 }
 
 li:hover {
@@ -133,7 +136,7 @@ button {
   cursor: pointer;
 }
 
-.forgot-password {
+.forgot-password a {
   font-family: "Work Sans";
   font-weight: 500;
   font-size: 14px;
@@ -142,6 +145,8 @@ button {
   text-align: center;
   text-decoration: none;
   margin: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 footer {
