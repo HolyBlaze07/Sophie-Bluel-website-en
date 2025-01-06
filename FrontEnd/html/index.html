@@ -16,7 +16,7 @@
 
   <body>
     <div id="edit-header" class="edit-header">
-      <img src="../assets/images/edit-icon.svg" alt="edit icon" />
+      <img src="../assets/images/Vector.png" alt="edit icon" />
       <p class="edit-content">Editing Mode</p>
     </div>
     <div class="page">
@@ -105,11 +105,46 @@
               <button id="to-add-photo">Add a photo</button>
             </div>
             <div id="add-photo" class="modal-view hidden">
+              <button id="back-to-gallery" class="back-btn">
+                <img src="../assets/images/arrow-left.png" alt="back icon" />
+              </button>
               <h2>Add Photo</h2>
+              <!--  -->
+              <div id="upload-photo" class="upload-photo">
+                <img src="../assets/images/upload-icon.png" alt="photo icon" />
+                <label for="file-upload" class="custom-file-upload">
+                  + Add Photo
+                </label>
+                <input
+                  type="file"
+                  id="file-upload"
+                  accept="image/*"
+                  required
+                  hidden
+                />
+                <p>jpg,png: max 4 MB</p>
+              </div>
+              <!-- <div id="photo-preview-container" class="photo-preview-container">
+                <img id="photo-preview" src="" alt="Selected Image Preview" class="hidden" />
+              </div> -->
               <form id="add-photo-form">
-                <input type="file" id="file-upload" accept="image/*" required />
-                <input type="text" id="title" placeholder="Title" required />
-                <button type="submit">Upload</button>
+                <label for="title" id="title" class="Title" required>
+                  Title
+                </label>
+                <input type="text" id="title-input" placeholder="" required />
+
+                <!-- Categories Dropdown -->
+                <label for="category" class="category-label" > Category </label>
+                <select id="category" name="category" required>
+                  <option value=""></option>
+                  <!-- Default option -->
+                  <!-- Categories will be inserted here by JavaScript -->
+                </select>
+
+                <!-- TODO: ADD SELECT TAG, GIVE IT AN ID
+                 ADD ZERO OR MORE OPTIONS -->
+                 <hr class="upload-line" />
+                <button type="submit" class="confirm-btn">Confirm</button>
               </form>
             </div>
           </div>

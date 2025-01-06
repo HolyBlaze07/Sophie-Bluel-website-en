@@ -272,7 +272,7 @@ nav ul img {
 }
 
 #edit-btn {
-  background-color: #ffffff;
+  background-color: #fffef8;
   border: #fffef8;
 }
 
@@ -322,7 +322,8 @@ nav ul img {
   height: 688px;
   margin: 10% auto;
   padding: 20px;
-
+  display: flex;
+  justify-content: center;
   border-radius: 8px;
   background: #fff;
   max-width: 800px;
@@ -340,7 +341,6 @@ nav ul img {
 
 .gallery-line {
   width: 520px;
-
   margin-top: 60px;
   border-top: 1px solid #000000;
   display: block;
@@ -413,6 +413,53 @@ nav ul img {
   text-align: center;
   cursor: pointer;
 }
+
+.upload-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e8f1f6;
+  width: 420px;
+  height: 169px;
+  border-radius: 3px;
+  position: relative;
+}
+.upload-photo img {
+  margin: 5px;
+}
+.upload-photo p {
+  font-size: 14px;
+  color: #444444;
+}
+#photo-preview {
+  width: 100%; /* Ensure the image takes up the full width */
+  height: 100%; /* Ensure the image fills the container height */
+  object-fit: contain; /* Maintain aspect ratio without overflow */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.back-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+}
+.modal-view h2 {
+  color: black;
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+  margin: 50px 30px 30px 30px;
+
+  text-align: center;
+}
 /* File Uploading Styling */
 #file-upload {
   width: 100%;
@@ -425,17 +472,7 @@ nav ul img {
   font-size: 14px;
 }
 
-#title {
-  
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: none;
-
-  font-size: 14px;
-}
-/* Category Menu */
+/* Category Menu */  
 .category-menu {
   display: flex;
   justify-content: center;
@@ -460,7 +497,94 @@ nav ul img {
   background-color: #1d6154;
   color: white;
 }
+/* Style for the custom file upload button */
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #cbd6dc; /* You can adjust the background color */
+  color: #306685;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Work Sans", sans-serif;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+  width: 130px;
+  margin: 5px;
+}
 
+.custom-file-upload:hover {
+  background-color: #145a43; /* Darker shade on hover */
+}
+
+#file-upload {
+  display: none;
+}
+
+#add-photo-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#title {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #3d3d3d;
+  border: none;
+  width: 100%;
+  line-height: 30px;
+}
+
+/* Style for the title input */
+#title-input {
+  font-family: "Work Sans", sans-serif;
+  padding: 10px;
+  color: #444;
+  border: 1px solid #ffffff;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.09);
+  font-size: 14px;
+  margin-bottom: 20px; /* Spacing below the input */
+}
+
+.category-label {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #3d3d3d;
+  border: none;
+  width: 100%;
+  line-height: 30px;
+}
+#category {
+  font-family: "Work Sans", sans-serif;
+  color: #444;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.09);
+  font-size: 14px;
+  margin-bottom: 20px; /* Spacing below the input */
+}
+
+.upload-line {
+  width: 421px;
+  margin-top: 60px;
+  border-top: 1px solid #b3b3b3;
+  display: block;
+}
+
+.confirm-btn {
+  background-color: #a7a7a7;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  padding: 10px 80px;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 40px auto;
+}
 #contact {
   width: 50%;
   margin: auto;

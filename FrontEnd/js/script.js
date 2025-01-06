@@ -1,9 +1,12 @@
 let jobCache; // Cache for jobs
+let categoryCache; // Cache for categories
 const galleryDiv = document.querySelector(".gallery");
 const filterDiv = document.querySelector(".category-menu");
 const logoutButton = document.querySelector(".logout a");
+
 checkUserLoggedIn();
 
+// Check if user is logged in and update UI accordingly
 function checkUserLoggedIn() {
   const userToken = localStorage.getItem("userToken");
   const editBar = document.querySelector(".edit-header");
@@ -11,30 +14,23 @@ function checkUserLoggedIn() {
   const logoutLink = document.querySelector(".logout");
   const loginLink = document.querySelector(".login");
   const filterButton = document.querySelector(".category-menu");
-  // Make sure you have this element in your HTML
-  // TODO:Add event listener to the logout link to clear out local storage and redirect to login page
+
   if (userToken) {
     editButton.classList.remove("hidden");
     logoutLink.classList.remove("hidden");
-    //TODO: hide the filter buttons. display none.
     editBar.classList.remove("hidden");
     filterButton.classList.add("hidden");
-
     loginLink.classList.add("hidden");
   } else {
     editBar.classList.add("hidden");
     editButton.classList.add("hidden");
-
     logoutLink.classList.add("hidden");
     filterButton.classList.remove("hidden");
     loginLink.classList.remove("hidden");
-
-    //TODO: hiding the logout  and show the login but not at the same time. Show the filter buttons.
   }
 }
 
 // Add event listener for logout button
-
 logoutButton.addEventListener("click", function (event) {
   event.preventDefault(); // Prevent the default link behavior
   localStorage.removeItem("userToken"); // Clear the user session
@@ -42,6 +38,7 @@ logoutButton.addEventListener("click", function (event) {
   window.location.href = "./"; // Redirect to the home page
 });
 
+// Fetch works and categories from API and display them
 fetch("http://localhost:5678/api/works")
   .then((data) => data.json())
   .then((jobs) => {
@@ -49,16 +46,14 @@ fetch("http://localhost:5678/api/works")
     insertJobs(jobs); // Display jobs in the gallery
   });
 
-// Fetch and display categories
 fetch("http://localhost:5678/api/categories")
   .then((data) => data.json())
   .then((categories) => {
+    categoryCache = categories; // Cache categories
     insertCategories(categories); // Render category buttons
   });
 
-/**
- * Insert jobs into the gallery
- */
+// Insert jobs into the gallery
 function insertJobs(jobs) {
   galleryDiv.innerHTML = ""; // Clear the gallery
   jobs.forEach(({ imageUrl, title }) => {
@@ -71,19 +66,14 @@ function insertJobs(jobs) {
   });
 }
 
-/**
- * Insert categories into the filter menu
- */
+// Insert categories into the filter menu
 function insertCategories(categories) {
   filterDiv.innerHTML = `<button data-category="all">All</button>`; // Add "All" button
-
   categories.forEach(({ id, name }) => {
     filterDiv.innerHTML += `<button data-category="${id}">${name}</button>`;
   });
 
   const buttons = filterDiv.querySelectorAll("button");
-
-  // Add event listeners to filter buttons
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const categoryId = button.getAttribute("data-category");
@@ -93,9 +83,7 @@ function insertCategories(categories) {
   });
 }
 
-/**
- * Filter jobs by category and update the gallery
- */
+// Filter jobs by category and update the gallery
 function filterJobs(categoryId) {
   if (categoryId === "all") {
     insertJobs(jobCache); // Show all jobs
@@ -105,21 +93,17 @@ function filterJobs(categoryId) {
   }
 }
 
-/**
- * Modal Logic
- */
-
-// Get modal elements
+// Modal Logic
 const modal = document.getElementById("modal");
 const closeBtn = document.querySelector(".close");
 const toAddPhotoBtn = document.getElementById("to-add-photo");
 const photoGallery = document.getElementById("photo-gallery");
 const addPhoto = document.getElementById("add-photo");
+const backToGalleryBtn = document.getElementById("back-to-gallery");
 
 // Open modal
 document.getElementById("edit-btn").addEventListener("click", () => {
   insertModalGallery(jobCache); // Insert jobs into modal gallery
-
   modal.style.display = "block"; // Show modal
 });
 
@@ -136,9 +120,18 @@ window.addEventListener("click", (e) => {
 // Toggle to "Add Photo" view
 toAddPhotoBtn.addEventListener("click", () => {
   photoGallery.classList.add("hidden");
+  // TODO: Add option tags to select tag in the add photo modal
+
   addPhoto.classList.remove("hidden");
 });
 
+// Handle back button click to go back to photo gallery
+backToGalleryBtn.addEventListener("click", () => {
+  addPhoto.classList.add("hidden");
+  photoGallery.classList.remove("hidden");
+});
+
+// Insert jobs into the modal gallery
 function insertModalGallery(jobs) {
   const modalGallery = document.querySelector(".modal-gallery");
   modalGallery.innerHTML = ""; // Clear previous entries
@@ -146,26 +139,26 @@ function insertModalGallery(jobs) {
   jobs.forEach((job) => {
     const jobDiv = document.createElement("div");
     jobDiv.className = "modal-job";
+    jobDiv.dataset.job = job.id;
     jobDiv.innerHTML = `
       <img src="${job.imageUrl}" alt="${job.title}">
-    
-    <button class="delete-btn" data-job="${job.id}">
-          <img src="../assets/images/Group 10@2x.png" alt="Delete icon" />
-        </button>`;
+      <button class="delete-btn">
+        <img src="../assets/images/Group 10@2x.png" alt="Delete icon" />
+      </button>`;
     modalGallery.appendChild(jobDiv);
   });
 
   // Add event listeners to all delete buttons
   modalGallery.querySelectorAll(".delete-btn").forEach((button) => {
-    console.log(button);
     button.addEventListener("click", async (event) => {
       const deleteBtn = event.target;
-      const modalJob = deleteBtn.closest(`.modal-job`);
+      const modalJob = deleteBtn.closest(".modal-job");
+      const jobId = modalJob.dataset.job;
+      const userToken = localStorage.getItem("userToken");
+      console.log(userToken);
 
-      // const jobId = deleteBtn.dataset.job;
-      const jobId = 1;
+      modalJob.remove(); // Remove the job from the modal
 
-      modalJob.remove();
       try {
         const response = await fetch(
           `http://localhost:5678/api/works/${jobId}`,
@@ -175,13 +168,12 @@ function insertModalGallery(jobs) {
               Authorization: `Bearer ${localStorage.getItem("userToken")}`,
               "Content-Type": "application/json",
             },
-            // TODO delete the job from the backend that has the id of jobId using fetch API
-            // TODO remove the job from the jobCache array
           }
         );
-        if (response.ok) {
-          jobCache = jobCache.filter((job) => job.id !== parseInt(jobId));
 
+        if (response.ok) {
+          // Update jobCache and re-render both galleries
+          jobCache = jobCache.filter((job) => job.id !== parseInt(jobId));
           insertJobs(jobCache);
           insertModalGallery(jobCache);
         } else {
@@ -194,4 +186,80 @@ function insertModalGallery(jobs) {
       }
     });
   });
+
+  // Fetch categories from the backend API and populate the dropdown
+  fetch("http://localhost:5678/api/categories")
+    .then((response) => response.json())
+    .then((categories) => {
+      // Populate the categories dropdown
+      const categorySelect = document.getElementById("category"); // The select element in the form
+      categorySelect.innerHTML = `<option value="" disabled selected>Select a category</option>`; // Add a default option
+
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id; // Set the value of each option
+        option.textContent = category.name; // Set the display text of each option
+        categorySelect.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+      alert("There was an error fetching categories.");
+    });
+
+  // Add event listener to the form to submit new photo
+  document
+    .getElementById("add-photo-form")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData();
+      formData.append("image", document.getElementById("file-upload").files[0]);
+      formData.append("title", document.getElementById("title-input").value);
+      formData.append("category", document.getElementById("category").value);
+
+      try {
+        const response = await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+          body: formData, // Send the form data
+        });
+
+        if (response.ok) {
+          const newJob = await response.json();
+          jobCache.push(newJob); // Add the new job to the cache
+          insertJobs(jobCache); // Update the gallery with the new job
+          modal.style.display = "none"; // Close the modal
+        } else {
+          alert("Failed to add the new project.");
+        }
+      } catch (error) {
+        console.error("Error submitting new project:", error);
+        alert("There was an error submitting the new project.");
+      }
+    });
+    const fileUpload = document.getElementById("file-upload");
+const photoPreview = document.getElementById("photo-preview"); // The img tag that will display the selected image
+
+// Listen for a file selection
+fileUpload.addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  
+  // Check if a file is selected
+  if (file) {
+    const reader = new FileReader();
+    
+    // When the file is read, display it
+    reader.onload = function (e) {
+      // Set the src of the preview image to the selected file
+      photoPreview.src = e.target.result;
+      photoPreview.classList.remove("hidden"); // Show the image preview
+    };
+    
+    reader.readAsDataURL(file); // Read the file as a data URL
+  }
+});
+
 }
