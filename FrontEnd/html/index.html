@@ -95,7 +95,10 @@
         <!-- Modal -->
         <div id="modal" class="modal">
           <div class="modal-content">
-            <span class="close">&times;</span>
+            <div class="modal-nav">
+              
+              <div class="close">&times;</div>
+            </div>
             <div id="photo-gallery" class="modal-view">
               <h2>Photo Gallery</h2>
               <div class="modal-gallery">
@@ -105,7 +108,7 @@
               <button id="to-add-photo">Add a photo</button>
             </div>
             <div id="add-photo" class="modal-view hidden">
-              <button id="back-to-gallery" class="back-btn">
+              <button id="back-to-gallery" class="back-btn ">
                 <img src="../assets/images/arrow-left.png" alt="back icon" />
               </button>
               <h2>Add Photo</h2>
@@ -118,15 +121,13 @@
                 <input
                   type="file"
                   id="file-upload"
+                  class="file-upload"
                   accept="image/*"
-                  required
                   hidden
                 />
                 <p>jpg,png: max 4 MB</p>
               </div>
-              <!-- <div id="photo-preview-container" class="photo-preview-container">
-                <img id="photo-preview" src="" alt="Selected Image Preview" class="hidden" />
-              </div> -->
+             
               <form id="add-photo-form">
                 <label for="title" id="title" class="Title" required>
                   Title
@@ -134,7 +135,7 @@
                 <input type="text" id="title-input" placeholder="" required />
 
                 <!-- Categories Dropdown -->
-                <label for="category" class="category-label" > Category </label>
+                <label for="category" class="category-label"> Category </label>
                 <select id="category" name="category" required>
                   <option value=""></option>
                   <!-- Default option -->
@@ -143,7 +144,7 @@
 
                 <!-- TODO: ADD SELECT TAG, GIVE IT AN ID
                  ADD ZERO OR MORE OPTIONS -->
-                 <hr class="upload-line" />
+                <hr class="upload-line" />
                 <button type="submit" class="confirm-btn">Confirm</button>
               </form>
             </div>

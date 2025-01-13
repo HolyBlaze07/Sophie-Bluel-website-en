@@ -120,8 +120,6 @@ window.addEventListener("click", (e) => {
 // Toggle to "Add Photo" view
 toAddPhotoBtn.addEventListener("click", () => {
   photoGallery.classList.add("hidden");
-  // TODO: Add option tags to select tag in the add photo modal
-
   addPhoto.classList.remove("hidden");
 });
 
@@ -226,6 +224,13 @@ function insertModalGallery(jobs) {
           },
           body: formData, // Send the form data
         });
+        if (response.status === 401) {
+          console.error("Unauthorized. Please log in again.");
+          alert(
+            "Your session has expired or you're not authorized. Please log in again."
+          );
+          window.location.href = "./login.html"; // Redirect to login page
+        }
 
         if (response.ok) {
           const newJob = await response.json();
@@ -240,26 +245,26 @@ function insertModalGallery(jobs) {
         alert("There was an error submitting the new project.");
       }
     });
-    const fileUpload = document.getElementById("file-upload");
-const photoPreview = document.getElementById("photo-preview"); // The img tag that will display the selected image
-
-// Listen for a file selection
-fileUpload.addEventListener("change", function (event) {
-  const file = event.target.files[0];
-  
-  // Check if a file is selected
-  if (file) {
-    const reader = new FileReader();
-    
-    // When the file is read, display it
-    reader.onload = function (e) {
-      // Set the src of the preview image to the selected file
-      photoPreview.src = e.target.result;
-      photoPreview.classList.remove("hidden"); // Show the image preview
-    };
-    
-    reader.readAsDataURL(file); // Read the file as a data URL
-  }
-});
-
 }
+document.querySelector(".custom-file-upload").addEventListener("change", () => {
+  const fileUpload = document.querySelector(".file-upload");
+  const image = fileUpload.files[0];
+  if (!image.type.includes('image')) {
+    return alert('Only images are allowed!');
+  }
+
+  // check if size (in bytes) exceeds 10 MB
+  if (image.size > 4_000_000) {
+    return alert('Maximum upload size is 4MB!');
+  }
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(image);
+
+  fileReader.onload = () => {
+    const uploadPhoto = document.querySelector(".upload-photo");
+
+    // uploadPhoto.style.backgroundImage = url(
+    //   `</span><span class="p">${</span><span class="nx">fileReaderEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="s2">`
+    // );
+  };
+});
