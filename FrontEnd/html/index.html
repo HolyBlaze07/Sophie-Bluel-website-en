@@ -16,7 +16,7 @@
 
   <body>
     <div id="edit-header" class="edit-header">
-      <img src="../assets/images/Vector.png" alt="edit icon" />
+      <img src="../assets/images/vector-icon.svg" alt="edit icon" />
       <p class="edit-content">Editing Mode</p>
     </div>
     <div class="page">
@@ -96,7 +96,6 @@
         <div id="modal" class="modal">
           <div class="modal-content">
             <div class="modal-nav">
-              
               <div class="close">&times;</div>
             </div>
             <div id="photo-gallery" class="modal-view">
@@ -108,26 +107,31 @@
               <button id="to-add-photo">Add a photo</button>
             </div>
             <div id="add-photo" class="modal-view hidden">
-              <button id="back-to-gallery" class="back-btn ">
+              <button id="back-to-gallery" class="back-btn">
                 <img src="../assets/images/arrow-left.png" alt="back icon" />
               </button>
               <h2>Add Photo</h2>
               <!--  -->
               <div id="upload-photo" class="upload-photo">
-                <img src="../assets/images/upload-icon.png" alt="photo icon" />
-                <label for="file-upload" class="custom-file-upload">
-                  + Add Photo
-                </label>
-                <input
-                  type="file"
-                  id="file-upload"
-                  class="file-upload"
-                  accept="image/*"
-                  hidden
-                />
-                <p>jpg,png: max 4 MB</p>
+                <div class="upload-action">
+                  <img
+                    src="../assets/images/upload-icon.png"
+                    alt="photo icon"
+                  />
+                  <label for="file-upload" class="custom-file-upload">
+                    + Add Photo
+                  </label>
+                  <input
+                    type="file"
+                    id="file-upload"
+                    class="file-upload"
+                    accept="image/*"
+                    hidden
+                  />
+                  <p>jpg,png: max 4 MB</p>
+                </div>
               </div>
-             
+
               <form id="add-photo-form">
                 <label for="title" id="title" class="Title" required>
                   Title

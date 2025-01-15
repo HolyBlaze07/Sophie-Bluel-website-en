@@ -156,54 +156,33 @@ function insertModalGallery(jobs) {
       console.log(userToken);
 
       modalJob.remove(); // Remove the job from the modal
-
-      try {
-        const response = await fetch(
-          `http://localhost:5678/api/works/${jobId}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          // Update jobCache and re-render both galleries
+      fetch(`http://localhost:5678/api/works/${jobId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then(() => {
           jobCache = jobCache.filter((job) => job.id !== parseInt(jobId));
           insertJobs(jobCache);
           insertModalGallery(jobCache);
-        } else {
-          console.error("Failed to delete job");
+        })
+        .catch((error) => {
+          console.error("Failed to delete job", error);
           alert("There was an error deleting the job");
-        }
-      } catch (error) {
-        console.error("Failed to delete job", error);
-        alert("There was an error deleting the job");
-      }
+        });
     });
   });
+  const categorySelect = document.getElementById("category"); // The select element in the form
+  categorySelect.innerHTML = `<option value="" disabled selected></option>`; // Add a default option
 
-  // Fetch categories from the backend API and populate the dropdown
-  fetch("http://localhost:5678/api/categories")
-    .then((response) => response.json())
-    .then((categories) => {
-      // Populate the categories dropdown
-      const categorySelect = document.getElementById("category"); // The select element in the form
-      categorySelect.innerHTML = `<option value="" disabled selected>Select a category</option>`; // Add a default option
-
-      categories.forEach((category) => {
-        const option = document.createElement("option");
-        option.value = category.id; // Set the value of each option
-        option.textContent = category.name; // Set the display text of each option
-        categorySelect.appendChild(option);
-      });
-    })
-    .catch((error) => {
-      console.error("Error fetching categories:", error);
-      alert("There was an error fetching categories.");
-    });
+  categoryCache.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id; // Set the value of each option
+    option.textContent = category.name; // Set the display text of each option
+    categorySelect.appendChild(option);
+  });
 
   // Add event listener to the form to submit new photo
   document
@@ -215,56 +194,80 @@ function insertModalGallery(jobs) {
       formData.append("image", document.getElementById("file-upload").files[0]);
       formData.append("title", document.getElementById("title-input").value);
       formData.append("category", document.getElementById("category").value);
+      console.log(formData);
 
-      try {
-        const response = await fetch("http://localhost:5678/api/works", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-          body: formData, // Send the form data
-        });
-        if (response.status === 401) {
-          console.error("Unauthorized. Please log in again.");
-          alert(
-            "Your session has expired or you're not authorized. Please log in again."
-          );
-          window.location.href = "./login.html"; // Redirect to login page
-        }
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+        body: formData, // Send the form data
+      });
+      if (response.status === 401) {
+        console.error("Unauthorized. Please log in again.");
+        alert(
+          "Your session has expired or you're not authorized. Please log in again."
+        );
+        window.location.href = "./login.html"; // Redirect to login page
+      }
 
-        if (response.ok) {
-          const newJob = await response.json();
-          jobCache.push(newJob); // Add the new job to the cache
-          insertJobs(jobCache); // Update the gallery with the new job
-          modal.style.display = "none"; // Close the modal
-        } else {
-          alert("Failed to add the new project.");
-        }
-      } catch (error) {
-        console.error("Error submitting new project:", error);
-        alert("There was an error submitting the new project.");
+      if (response.ok) {
+        const newJob = await response.json();
+        jobCache.push(newJob); // Add the new job to the cache
+        insertJobs(jobCache); // Update the gallery with the new job
+        modal.style.display = "none"; // Close the modal
+      } else {
+        alert("Failed to add the new project.");
       }
     });
 }
-document.querySelector(".custom-file-upload").addEventListener("change", () => {
-  const fileUpload = document.querySelector(".file-upload");
-  const image = fileUpload.files[0];
-  if (!image.type.includes('image')) {
-    return alert('Only images are allowed!');
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const fileUpload = document.querySelector(".file-upload"); // Hidden file input
+  const uploadPhoto = document.querySelector(".upload-photo"); // Container for preview
 
-  // check if size (in bytes) exceeds 10 MB
-  if (image.size > 4_000_000) {
-    return alert('Maximum upload size is 4MB!');
-  }
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(image);
+  // Listen for changes to the file input
+  fileUpload.addEventListener("change", () => {
+    const image = fileUpload.files[0]; // Get the selected file
 
-  fileReader.onload = () => {
-    const uploadPhoto = document.querySelector(".upload-photo");
+    if (!image) {
+      console.error("No file selected.");
+      return; // Exit if no file is selected
+    }
 
-    // uploadPhoto.style.backgroundImage = url(
-    //   `</span><span class="p">${</span><span class="nx">fileReaderEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="s2">`
-    // );
-  };
+    // Validate file type
+    if (!image.type.includes("image")) {
+      alert("Only images are allowed!");
+      console.error("Invalid file type:", image.type);
+      fileUpload.value = ""; // Reset file input
+      return;
+    }
+
+    // Validate file size (max 4MB)
+    if (image.size > 4_000_000) {
+      alert("Maximum upload size is 4MB!");
+      console.error("File size exceeds 4MB");
+      fileUpload.value = ""; // Reset file input
+      return;
+    }
+
+    const fileReader = new FileReader();
+
+    // When the file is loaded, display the preview
+    fileReader.onload = () => {
+      console.log("Image Data URL:", fileReader.result); // Debugging output
+
+      // Set the uploaded image as the background
+      uploadPhoto.style.backgroundImage = `url('${fileReader.result}')`;
+      uploadPhoto.style.backgroundSize = "contain";
+      uploadPhoto.style.backgroundPosition = "center";
+      uploadPhoto.style.backgroundRepeat = "no-repeat";
+      document
+        .getElementsByClassName("upload-action")[0]
+        .classList.add("hidden");
+    };
+
+    // Read the image file as a Data URL
+    fileReader.readAsDataURL(image);
+    // TODO: Add a change event listener to the text input, file input,and select categories to enable the submit button
+  });
 });

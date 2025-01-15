@@ -142,7 +142,7 @@ table {
   align-items: center;
   height: 59px;
   overflow: visible;
-  
+
   /* display:none */
 }
 .edit-header img {
@@ -337,9 +337,9 @@ nav ul img {
 .modal-gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px ;
+  gap: 10px;
   justify-content: center;
-   margin: 30px 65px; 
+  margin: 30px 65px;
   padding: 20px;
   margin: 30px 65px 0 65px;
 }
@@ -429,7 +429,16 @@ nav ul img {
   height: 169px;
   border-radius: 3px;
   position: relative;
+  overflow: hidden;
 }
+
+.upload-action.hidden {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
 .upload-photo img {
   margin-bottom: 10px;
 }
@@ -437,7 +446,6 @@ nav ul img {
   font-size: 14px;
   color: #444444;
 }
-
 
 .back-btn {
   position: absolute;
@@ -472,7 +480,7 @@ nav ul img {
   font-size: 14px;
 }
 
-/* Category Menu */  
+/* Category Menu */
 .category-menu {
   display: flex;
   justify-content: center;
@@ -516,7 +524,7 @@ nav ul img {
 .custom-file-upload:hover {
   background-color: #145a43;
   color: white;
-   /* Darker shade on hover */
+  /* Darker shade on hover */
 }
 
 #file-upload {
@@ -587,8 +595,6 @@ nav ul img {
   cursor: pointer;
   margin: 40px auto;
 }
-
-
 
 #contact {
   width: 50%;
