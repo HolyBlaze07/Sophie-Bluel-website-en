@@ -38,13 +38,28 @@ logoutButton.addEventListener("click", function (event) {
   window.location.href = "./"; // Redirect to the home page
 });
 
-// Fetch works and categories from API and display them
+
+// Fetch works and display them in the gallery
 fetch("http://localhost:5678/api/works")
-  .then((data) => data.json())
+  .then((data) => data.json()) // Convert the response to JSON
   .then((jobs) => {
-    jobCache = jobs; // Cache jobs
-    insertJobs(jobs); // Display jobs in the gallery
+    jobCache = jobs; // Cache jobs for later use
+    insertJobs(jobs); // Call the function to display jobs in the gallery
   });
+
+// Function to insert jobs into the gallery dynamically
+function insertJobs(jobs) {
+  galleryDiv.innerHTML = ""; // Clear the gallery
+  jobs.forEach(({ imageUrl, title }) => {
+    galleryDiv.innerHTML += `
+      <figure>
+        <img src="${imageUrl}" alt="${title}">
+        <figcaption>${title}</figcaption>
+      </figure>
+    `;
+  });
+}
+
 
 fetch("http://localhost:5678/api/categories")
   .then((data) => data.json())
@@ -184,6 +199,47 @@ function insertModalGallery(jobs) {
     categorySelect.appendChild(option);
   });
 
+
+  // Select the form fields and button
+const titleInput = document.getElementById("title-input");
+const fileUpload = document.getElementById("file-upload");
+const confirmButton = document.querySelector(".confirm-btn");
+
+// Function to check if all fields are filled
+function checkFormCompletion() {
+  const isTitleFilled = titleInput.value.trim() !== "";
+  const isCategorySelected = categorySelect.value.trim() !== "";
+  const isFileUploaded = fileUpload.files.length > 0;
+
+  // Enable/disable button based on form completion
+  if (isTitleFilled && isCategorySelected && isFileUploaded) {
+    confirmButton.disabled = false;
+    confirmButton.classList.add("enabled");
+    confirmButton.classList.remove("disabled");
+  } else {
+    confirmButton.disabled = true;
+    confirmButton.classList.add("disabled");
+    confirmButton.classList.remove("enabled");
+  }
+}
+
+// Add event listeners for each form field
+titleInput.addEventListener("input", checkFormCompletion);
+categorySelect.addEventListener("change", checkFormCompletion);
+fileUpload.addEventListener("change", checkFormCompletion);
+
+
+  document.getElementById("file-upload").addEventListener("change", () => {
+    
+    
+    const button = document.querySelector(".confirm-btn")
+
+
+    // Enable the button
+    button.disabled = false;
+  });
+
+
   // Add event listener to the form to submit new photo
   document
     .getElementById("add-photo-form")
@@ -268,6 +324,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Read the image file as a Data URL
     fileReader.readAsDataURL(image);
-    // TODO: Add a change event listener to the text input, file input,and select categories to enable the submit button
   });
 });

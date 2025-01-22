@@ -133,6 +133,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 /* Header Modal Styles */
 .edit-header {
   background-color: black;
@@ -142,27 +143,32 @@ table {
   align-items: center;
   height: 59px;
   overflow: visible;
+  gap: 10px;
 
   /* display:none */
 }
+
 .edit-header img {
   fill: white;
   display: block;
 
   z-index: 10;
 }
+
 main {
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 80%;
 }
+
 /** end reset css**/
 body {
   font-family: "Work Sans";
   font-size: 14px;
   background: #fffef8;
 }
+
 .page {
   max-width: 1140px;
   margin: auto;
@@ -187,7 +193,7 @@ h1 {
   color: #b1663c;
 }
 
-h1 > span {
+h1>span {
   font-family: "Work Sans";
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -269,6 +275,7 @@ nav ul img {
 #portfolio h2 {
   text-align: center;
 }
+
 .project-header {
   display: flex;
   justify-content: center;
@@ -288,9 +295,11 @@ nav ul img {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
+
 .gallery img {
   width: 100%;
 }
+
 .modal {
   display: none;
   position: fixed;
@@ -312,6 +321,7 @@ nav ul img {
   cursor: pointer;
   color: #000;
 }
+
 .modal-view h2 {
   color: black;
   font-family: "Work Sans";
@@ -321,6 +331,7 @@ nav ul img {
 
   text-align: center;
 }
+
 .modal-content {
   position: relative;
   width: 630px;
@@ -393,12 +404,14 @@ nav ul img {
   height: 20px;
   display: block;
 }
+
 .hidden {
   display: none;
   visibility: hidden;
   height: 0;
   width: 0;
 }
+
 #to-add-photo {
   margin: 30px auto;
   padding: 9px 49px;
@@ -432,6 +445,13 @@ nav ul img {
   overflow: hidden;
 }
 
+.upload-action {
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .upload-action.hidden {
   display: none;
   visibility: hidden;
@@ -442,6 +462,7 @@ nav ul img {
 .upload-photo img {
   margin-bottom: 10px;
 }
+
 .upload-photo p {
   font-size: 14px;
   color: #444444;
@@ -459,6 +480,7 @@ nav ul img {
   width: 21px;
   height: 21px;
 }
+
 .modal-view h2 {
   color: black;
   font-family: "Work Sans";
@@ -468,6 +490,7 @@ nav ul img {
 
   text-align: center;
 }
+
 /* File Uploading Styling */
 #file-upload {
   width: 100%;
@@ -505,11 +528,13 @@ nav ul img {
   background-color: #1d6154;
   color: white;
 }
+
 /* Style for the custom file upload button */
 .custom-file-upload {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #cbd6dc; /* You can adjust the background color */
+  background-color: #cbd6dc;
+  /* You can adjust the background color */
   color: #306685;
   font-size: 14px;
   font-weight: bold;
@@ -536,6 +561,7 @@ nav ul img {
   justify-content: center;
   flex-direction: column;
 }
+
 #title {
   font-family: "Work Sans", sans-serif;
   font-size: 14px;
@@ -554,7 +580,8 @@ nav ul img {
   border: 1px solid #ffffff;
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.09);
   font-size: 14px;
-  margin-bottom: 20px; /* Spacing below the input */
+  margin-bottom: 20px;
+  /* Spacing below the input */
 }
 
 .category-label {
@@ -566,6 +593,7 @@ nav ul img {
   width: 100%;
   line-height: 30px;
 }
+
 #category {
   font-family: "Work Sans", sans-serif;
   color: #444;
@@ -574,7 +602,8 @@ nav ul img {
   border: 1px solid #ffffff;
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.09);
   font-size: 14px;
-  margin-bottom: 20px; /* Spacing below the input */
+  margin-bottom: 20px;
+  /* Spacing below the input */
 }
 
 .upload-line {
@@ -585,7 +614,7 @@ nav ul img {
 }
 
 .confirm-btn {
-  background-color: #a7a7a7;
+  /* background-color: #1D6154; */
   color: white;
   border: none;
   border-radius: 60px;
@@ -596,12 +625,24 @@ nav ul img {
   margin: 40px auto;
 }
 
+/* Disabled state */
+.confirm-btn.disabled {
+  background-color: #A7A7A7;
+  cursor: not-allowed;
+}
+
+/* Enabled state */
+.confirm-btn.enabled {
+  background-color: #1D6154;
+  cursor: pointer;
+}
+
 #contact {
   width: 50%;
   margin: auto;
 }
 
-#contact > * {
+#contact>* {
   text-align: center;
 }
 
