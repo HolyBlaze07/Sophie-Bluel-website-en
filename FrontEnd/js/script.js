@@ -201,37 +201,37 @@ function insertModalGallery(jobs) {
 
 
   // Select the form fields and button
-const titleInput = document.getElementById("title-input");
-const fileUpload = document.getElementById("file-upload");
-const confirmButton = document.querySelector(".confirm-btn");
+  const titleInput = document.getElementById("title-input");
+  const fileUpload = document.getElementById("file-upload");
+  const confirmButton = document.querySelector(".confirm-btn");
 
-// Function to check if all fields are filled
-function checkFormCompletion() {
-  const isTitleFilled = titleInput.value.trim() !== "";
-  const isCategorySelected = categorySelect.value.trim() !== "";
-  const isFileUploaded = fileUpload.files.length > 0;
+  // Function to check if all fields are filled
+  function checkFormCompletion() {
+    const isTitleFilled = titleInput.value.trim() !== "";
+    const isCategorySelected = categorySelect.value.trim() !== "";
+    const isFileUploaded = fileUpload.files.length > 0;
 
-  // Enable/disable button based on form completion
-  if (isTitleFilled && isCategorySelected && isFileUploaded) {
-    confirmButton.disabled = false;
-    confirmButton.classList.add("enabled");
-    confirmButton.classList.remove("disabled");
-  } else {
-    confirmButton.disabled = true;
-    confirmButton.classList.add("disabled");
-    confirmButton.classList.remove("enabled");
+    // Enable/disable button based on form completion
+    if (isTitleFilled && isCategorySelected && isFileUploaded) {
+      confirmButton.disabled = false;
+      confirmButton.classList.add("enabled");
+      confirmButton.classList.remove("disabled");
+    } else {
+      confirmButton.disabled = true;
+      confirmButton.classList.add("disabled");
+      confirmButton.classList.remove("enabled");
+    }
   }
-}
 
-// Add event listeners for each form field
-titleInput.addEventListener("input", checkFormCompletion);
-categorySelect.addEventListener("change", checkFormCompletion);
-fileUpload.addEventListener("change", checkFormCompletion);
+  // Add event listeners for each form field
+  titleInput.addEventListener("input", checkFormCompletion);
+  categorySelect.addEventListener("change", checkFormCompletion);
+  fileUpload.addEventListener("change", checkFormCompletion);
 
 
   document.getElementById("file-upload").addEventListener("change", () => {
-    
-    
+
+
     const button = document.querySelector(".confirm-btn")
 
 

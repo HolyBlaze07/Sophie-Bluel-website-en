@@ -17,7 +17,7 @@ password: S0phie
 ```
 
 Link to see the
-[Swagger documentation ](http://lohttpcalhost:5678/api-docs/)
+[Swagger documentation ](http://localhost:5678/api-docs/)
 
 To read the documentation, use Chrome or Firefox
 
