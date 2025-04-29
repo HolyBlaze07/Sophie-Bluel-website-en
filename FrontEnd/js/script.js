@@ -39,14 +39,14 @@ logoutButton.addEventListener("click", function (event) {
 });
 
 // Fetch works and categories from API and display them
-fetch("http://localhost:5678/api/works")
+fetch("https://sophie-bluel-ea7w.onrender.com/api/works")
   .then((data) => data.json())
   .then((jobs) => {
     jobCache = jobs; // Cache jobs
     insertJobs(jobs); // Display jobs in the gallery
   });
 
-fetch("http://localhost:5678/api/categories")
+fetch("https://sophie-bluel-ea7w.onrender.com/api/categories")
   .then((data) => data.json())
   .then((categories) => {
     categoryCache = categories; // Cache categories
@@ -156,7 +156,7 @@ function insertModalGallery(jobs) {
       console.log(userToken);
 
       modalJob.remove(); // Remove the job from the modal
-      fetch(`http://localhost:5678/api/works/${jobId}`, {
+      fetch(`https://sophie-bluel-ea7w.onrender.com/api/works/${jobId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -196,13 +196,16 @@ function insertModalGallery(jobs) {
       formData.append("category", document.getElementById("category").value);
       console.log(formData);
 
-      const response = await fetch("http://localhost:5678/api/works", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-        },
-        body: formData, // Send the form data
-      });
+      const response = await fetch(
+        "https://sophie-bluel-ea7w.onrender.com/api/works",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+          body: formData, // Send the form data
+        }
+      );
       if (response.status === 401) {
         console.error("Unauthorized. Please log in again.");
         alert(
