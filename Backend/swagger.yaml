@@ -4,7 +4,8 @@ info:
   description: API Backend for Architect Website
   version: 1.0.0
 servers:
-  - url: http://localhost:5678/api/
+  - url: https://sophie-bluel-ea7w.onrender.com/api/
+
 paths:
   /users/login:
     post:
