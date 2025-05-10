@@ -146,7 +146,7 @@ function insertModalGallery(jobs) {
     jobDiv.innerHTML = `
       <img src="${job.imageUrl}" alt="${job.title}">
       <button class="delete-btn">
-        <img src="../assets/images/Group 10@2x.png" alt="Delete icon" />
+        <img src="./assets/images/Group 10@2x.png" alt="Delete icon" />
       </button>`;
     modalGallery.appendChild(jobDiv);
   });
