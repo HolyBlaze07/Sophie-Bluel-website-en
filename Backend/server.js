@@ -1,5 +1,12 @@
 const http = require('http');
 const app = require('./app');
+const BASE_URL = process.env.BASE_URL || "https://sophie-bluel-ea7w.onrender.com"; // fallback to deployed
+
+const works = rows.map((work) => ({
+  ...work,
+  imageUrl: `${BASE_URL}/images/${work.image}`, // or however you're storing file names
+}));
+
 
 const normalizePort = val => {
 	const port = parseInt(val, 10);
