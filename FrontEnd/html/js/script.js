@@ -62,6 +62,7 @@ fetch("https://sophie-bluel-ea7w.onrender.com/api/categories")
 function insertJobs(jobs) {
   galleryDiv.innerHTML = ""; // Clear the gallery
   jobs.forEach(({ imageUrl, title }) => {
+     const fixedImageUrl = imageUrl.replace("http://localhost:5678", "https://sophie-bluel-ea7w.onrender.com");
     galleryDiv.innerHTML += `
       <figure>
         <img src="${imageUrl}" alt="${title}">
